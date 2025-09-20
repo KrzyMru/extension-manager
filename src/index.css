@@ -15,10 +15,51 @@
   --gradient-dark: linear-gradient(180deg, #040918 0%, #091540 100%);
 
   --font-md: 16px;
+  --font-xl: 32px;
 
   --font-regular: 400;
   --font-medium: 500;
   --font-bold: 700;
+
+  --background: var(--gradient-light);
+  --item-bg: var(--neutral);
+  --button-filter-bg: var(--neutral);
+  --button-filter-bg-hover: var(--neutral-100);
+  --button-theme-bg: var(--neutral-100);
+  --button-theme-bg-hover: var(--neutral-300);
+  --button-bg-active: var(--red-500);
+  --button-bg-active-hover: var(--red-700);
+  --header-color: var(--neutral-900);
+  --text-color: var(--neutral-600);
+  --button-color: var(--neutral-800);
+  --button-color-active: var(--neutral);
+  --button-filter-border: var(--neutral-200);
+  --button-border-active: var(--red-700);
+  --switch-color-active: var(--red-500);
+  --switch-color-inactive: var(--neutral-300);
+}
+
+[data-theme="dark"] {
+  --background: var(--gradient-dark);
+  --item-bg: var(--neutral-800);
+  --button-filter-bg: var(--neutral-700);
+  --button-filter-bg-hover: var(--neutral-600);
+  --button-theme-bg: var(--neutral-700);
+  --button-theme-bg-hover: var(--neutral-600);
+  --button-bg-active: var(--red-500);
+  --button-bg-active-hover: var(--red-400);
+  --header-color: var(--neutral);
+  --text-color: var(--neutral-300);
+  --button-color: var(--neutral-100);
+  --button-color-active: var(--neutral-900);
+  --button-filter-border: var(--neutral-600);
+  --button-border-active: var(--red-400);
+  --switch-color-active: var(--red-700);
+  --switch-color-inactive: var(--neutral-600);
+}
+
+#root {
+  height: 100%;
 }
 
 body {
@@ -27,9 +68,17 @@ body {
   font-family: 'Noto Sans';
 }
 
+button,
+input,
+textarea,
+select {
+  font-family: inherit;
+}
+
 @font-face {
   font-family: 'Noto Sans';
   font-style: normal;
+  font-weight: 100 900;
   src: url("./assets/fonts/NotoSans-VariableFont_wdth,wght.ttf"); 
 }
 @font-face {

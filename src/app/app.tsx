@@ -10,6 +10,7 @@ import Extension from './components/extension/extension';
 const App = () => {
   const [extensions, setExtensions] = useState<ExtensionProps[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [filter, setFilter] = useState<'all'|'active'|'inactive'>('all');
 
   useEffect(() => {
     const loadExtensions = async () => {
@@ -26,15 +27,25 @@ const App = () => {
     loadExtensions();
   }, []);
 
+  const handleDelete = (name: string) => {
+    setExtensions(extensions.filter(ext => ext.name !== name));
+  }
+  const handleCheck = (name: string) => {
+    setExtensions(extensions => extensions.map(ext => ext.name === name ? {...ext, isActive: !ext.isActive} : ext));
+  }
+
   return (
     <ThemeProvider>
       <div className='page'>
         <header className='bar'>
-          <img 
-            src={Logo}
-            alt='logo'
-            className='bar__logo'
-          />
+          <div className='bar__logo'>
+            <img 
+              src={Logo}
+              alt='logo'
+              className='bar__icon'
+            />
+            <h2>Extensions</h2>
+          </div>
           <ThemeButton />
         </header>
         <div className='header'>
@@ -43,21 +54,24 @@ const App = () => {
             <button 
               type='button'
               title='All'
-              className='button button--filter'
+              onClick={() => setFilter('all')}
+              className={`button button--filter ${filter === 'all' ? 'filter--active' : ''}`}
             >
               All
             </button>
             <button 
               type='button'
               title='Active'
-              className='button button--filter'
+              onClick={() => setFilter('active')}
+              className={`button button--filter ${filter === 'active' ? 'filter--active' : ''}`}
             >
               Active
             </button>
             <button 
               type='button'
               title='Inactive'
-              className='button button--filter'
+              onClick={() => setFilter('inactive')}
+              className={`button button--filter ${filter === 'inactive' ? 'filter--active' : ''}`}
             >
               Inactive
             </button>
@@ -68,13 +82,20 @@ const App = () => {
             loading ? 
             <div className='loading'/>
             :
-            extensions.map((extension, i) => 
+            extensions.filter(ext => 
+              filter === 'all' ? true :
+              filter === 'active' ? ext.isActive :
+              filter === 'inactive' ? !ext.isActive :
+              false
+            ).map((extension, i) => 
               <li key={i}>
                 <Extension 
                   logo={extension.logo}
                   name={extension.name}
                   description={extension.description}
                   isActive={extension.isActive}
+                  onDelete={handleDelete}
+                  onCheck={handleCheck}
                 />
               </li>
             )

@@ -1,10 +1,10 @@
+import "./extension.css";
 import { useState } from "react";
 import type { ExtensionProps } from "./types";
-import Switch from "react-switch";
+import CustomSwitch from "./components/custom-switch";
 
 const Extension = (props: ExtensionProps) => {
-    const { logo, name, description, isActive } = { ...props };
-    const [active, setActive] = useState<boolean>(isActive);
+    const { logo, name, description, isActive, onDelete, onCheck } = { ...props };
 
     return (
         <div className="extension">
@@ -24,13 +24,11 @@ const Extension = (props: ExtensionProps) => {
                     type="button"
                     title="Remove"
                     className="button button--extension"
+                    onClick={() => onDelete(name)}
                 >
                     Remove
                 </button>
-                <Switch 
-                    onChange={() => setActive(!active)} 
-                    checked={active}                   
-                />
+                <CustomSwitch checked={isActive} onClick={() => onCheck(name)} />
             </div>
         </div>
     );

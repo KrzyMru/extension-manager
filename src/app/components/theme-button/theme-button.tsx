@@ -1,3 +1,4 @@
+import "./theme-button.css";
 import { useContext } from "react";
 import Sun from "../../../assets/images/icon-sun.svg";
 import Moon from "../../../assets/images/icon-moon.svg";
@@ -6,7 +7,7 @@ import { ThemeContext } from "../../../contexts/theme-context/theme-context";
 const ThemeButton = () => {
     const { theme, toggleTheme } = useContext(ThemeContext);
 
-    const icon = theme === "light" ? Sun : Moon;
+    const icon = theme === "light" ? Moon : Sun;
 
     return (
         <button
