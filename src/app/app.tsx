@@ -1,4 +1,4 @@
-import './App.css';
+import './app.css';
 import Logo from "../assets/images/logo.svg";
 import { ThemeProvider } from '../contexts/theme-context/theme-context';
 import ThemeButton from './components/theme-button/theme-button';
