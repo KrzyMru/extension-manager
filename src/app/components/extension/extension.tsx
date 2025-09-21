@@ -1,5 +1,4 @@
 import "./extension.css";
-import { useState } from "react";
 import type { ExtensionProps } from "./types";
 import CustomSwitch from "./components/custom-switch";
 
